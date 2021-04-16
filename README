@@ -1,0 +1,59 @@
+/*
+README
+Program 3 Parser
+CS 530
+Fall 2020
+Erik Morua
+*/
+
+File Manifest:
+    parser.cpp
+    parser.h
+    makefile
+    README
+
+Compile instructions:
+    On Edoras:
+        Compile using g++ compiler with -o flag.
+	    g++ -o parser parser.cpp
+    Compile using the makefile
+	make parser
+
+Operating instructions:
+    Required inputs:
+	A text file that will be entered during the execution of the program.
+	You will be prompted for a file name during execution.
+     Output:
+	The output will be a file named parsed.txt
+    To test:
+	Run the program ./parser and you will be prompted to enter a file with statements.
+	Enter the file name of the text holding the statements and after execution, 
+	a file named parsed.txt will be created with the validity of the statements.
+
+List/description of novel/significant design decisions:
+	One of the significant decisions made during the design of the code was the way that
+	the character, digit and operation tables were made. At the start of the programming
+	of this parser, I had originally used a function to check if the input tokens were digits
+	characters, or operations. I found that it wasn't allowed on edoras so I was going to run
+	loops comparing each character with a pre-inputted number or with a letter. I knew this was 
+	going to be expensive in terms of processing power and while it wouldn't have made a big difference
+	here, if we ever decided to run a text file with hundreds or thousands of lines, the excution time and cost would 
+	be exponential. I then decided to use ascii code to check if the characters were digits, letters or operands,
+	but i realized this would be difficult to read and easy to mess up so I decided to 
+	make structs holding all of the letters and digits and operands. I think this way, I still sacrifice some complexity 
+	but I take it back in readability and if I ever needed to go back and change it, It wouldn't be difficult.
+
+List/description of all known deficiencies or bugs
+	This program checks to make sure that the input file is not null, but does not test or account
+	for files that don't contain statements how we are known to receive them on each line.
+	A known deficiency, is when a statement goes over the allocated space. I don't expect to 
+	have this problem as anyone running this program I believe would run it as instructed, but 
+	this code could be manipulated as we use functions that don't check for buffer sizes and alloction. If 
+	a bigger assignment or expression were to be used than space was allocated for, it would overwrite 
+	memory in the stack and cause problems.
+Lessons Learned
+	I learned about grammars in an earlier class. I learned more in depth about grammars, but I also learned a more important
+	lesson that is that anything we know, we can break down and recreate with small pieces. It seemed like grammars were 
+	a lot of small moving pieces and while they were confusing to work with, 
+	It taught me that breaking down pieces and working with those indivudually can help with bigger projects 
+	in programming.
